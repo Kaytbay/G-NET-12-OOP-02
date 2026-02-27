@@ -101,9 +101,9 @@ namespace oop_1
         //    }
         //}
 
-        public void PrintTicket()
-        {
-         Console.WriteLine($" Movie : {MovieName} , Type  : {Type}  , Seat  : {Seat}  , Price : {Price}  Total (14% tax): {CalcTotal(0.14)}" );
-        }
+        //public void PrintTicket()
+        //{
+        // Console.WriteLine($" Movie : {MovieName} , Type  : {Type}  , Seat  : {Seat}  , Price : {Price}  Total (14% tax): {CalcTotal(0.14)}" );
+        //}
     }
 }

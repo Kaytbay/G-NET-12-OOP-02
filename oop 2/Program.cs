@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using oop_1;
+using System.Security.Cryptography.X509Certificates;
 
 namespace oop_2
 {
@@ -157,6 +158,82 @@ namespace oop_2
 
             #region Part2:
 
+
+            Console.WriteLine(" Ticket Booking ==========\n");         
+            Cinema myCinema = new Cinema();
+
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine($"Enter Data Ticket {i+1}:");
+
+                Console.Write("Movie Name:");
+                string? movieName = Console.ReadLine();
+
+                Console.Write("Ticket Type (0=Standard, 1=VIP, 2=IMAX): ");
+                TicketType type = (TicketType)int.Parse(Console.ReadLine());
+
+                Console.Write("Seat Row  ");
+                char seatRow = char.Parse(Console.ReadLine().ToUpper());
+
+                Console.Write("Seat Number: ");
+                int seatNumber = int.Parse(Console.ReadLine());
+
+                Console.Write("Price: ");
+                double price = double.Parse(Console.ReadLine());
+
+              
+                SeatPosition seat = new SeatPosition { Row = seatRow, Numper = seatNumber };
+
+                Ticket newTicket = new Ticket(movieName, type, seat, price);
+
+                myCinema.AddTicket(newTicket);
+            }
+
+
+
+
+
+
+
+            Console.WriteLine("All Tickets ==========\n");
+            for (int i = 0; i < 3; i++)
+            {
+                Ticket t = myCinema[i];
+
+                Console.WriteLine($"Ticket #{t.TicketId} | {t.MovieName} | {t.Type} | Seat: {t.Seat.Row}-{t.Seat.Numper} | Price: {t.Price} EGP | After Tax: {t.PriceAfterTax} EGP");
+
+            }
+          
+
+
+
+
+
+
+
+            Console.WriteLine(" Search by Movie ==========");
+            Console.Write("Enter movie name to search: ");
+            string moviename = Console.ReadLine();
+
+            Ticket t1 = myCinema[moviename];
+
+            if (t1 != null)
+            {
+                Console.WriteLine($"Found: Ticket #{t1.TicketId} | {t1.MovieName} | {t1.Type} | Seat: {t1.Seat.Row}-{t1.Seat.Numper} | Price: {t1.Price} EGP\n");
+            }
+            else Console.WriteLine("Movie not found.\n");
+            
+
+            Console.WriteLine("System Stats ==========");
+            Console.WriteLine($"Total Tickets Sold: {Ticket.GetTotalTicketsSold()}");
+
+
+
+            Console.WriteLine($"Booking Ref 1: {BookingHelper.GenerateBookingReference()}");
+            Console.WriteLine($"Booking Ref 2: {BookingHelper.GenerateBookingReference()}");
+
+            double discountedTotal = BookingHelper.CalcGroupDiscount(5, 80);
+            Console.WriteLine($"Group Discount : {discountedTotal}");
 
 
             #endregion
